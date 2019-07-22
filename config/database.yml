@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: picat_production
-  username: picat
-  password: <%= ENV['PICAT_DATABASE_PASSWORD'] %>
+  # username: picat
+  # password: <%= ENV['PICAT_DATABASE_PASSWORD'] %>
