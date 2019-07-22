@@ -56,6 +56,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'rubocop-rspec'
   gem 'factory_bot_rails'
+  gem 'annotate'
 end
 
 group :test do
