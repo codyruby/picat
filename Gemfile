@@ -52,6 +52,7 @@ group :development do
   gem 'relaxed-rubocop'
   gem 'rubocop', require: false
   gem 'rubocop-rspec'
+  gem 'factory_bot_rails'
 end
 
 group :test do
