@@ -264,7 +264,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bootsnap (>= 1.1.0)
+  bootsnap
   byebug
   coffee-rails (~> 4.2)
   dotenv-rails
