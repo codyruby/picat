@@ -13,4 +13,16 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+
+//= require vendor/wow
+//= require vendor/jquery-1.11.2.min
+//= require vendor/swiper.min
+//= require vendor/bootstrap.min
+//= require vendor/jquery.countTo
+//= require vendor/jquery.inview
+//= require vendor/jquery.countdown
+//= require tt-cart
+//= require main
+
+
+
