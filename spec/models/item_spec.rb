@@ -26,25 +26,25 @@ RSpec.describe Item, type: :model do
     expect(build(:item)).to be_valid
   end
 
-  context "when validation" do
+  context "validation" do
     it "is valid with valid attributes" do
-      expect(let).to be_a(described_class)
+      expect(@item).to be_a(described_class)
     end
 
     describe "#title" do
-      it { expect(let).to validate_presence_of(:title) }
+      it { expect(@item).to validate_presence_of(:title) }
     end
 
     describe "#description" do
-      it { expect(let).to validate_presence_of(:description) }
+      it { expect(@item).to validate_presence_of(:description) }
     end
 
     describe "#price" do
-      it { expect(let).to validate_length_of(:price) }
+      it { expect(@item).to validate_length_of(:price) }
     end
 
     describe "#image_url" do
-      it { expect(let).to validate_length_of(:image_url) }
+      it { expect(@item).to validate_length_of(:image_url) }
     end
   end
 end
