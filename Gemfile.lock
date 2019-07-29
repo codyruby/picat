@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: 9ca23d22b4cb95edb2a015e9340c0531562bb25a
+  revision: 3356fb09bd57b550906140b611e99911b76ec732
   branch: master
   specs:
     faker (1.9.6)
@@ -267,7 +267,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bootsnap (>= 1.1.0)
+  bootsnap
   byebug
   coffee-rails (~> 4.2)
   dotenv-rails
