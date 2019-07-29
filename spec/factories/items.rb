@@ -15,8 +15,8 @@
 
 FactoryBot.define do
   factory :item do
-    title { "MyString" }
-    description { "This a test description" }
+    title { Faker::Creature::Cat.name }
+    description { Faker::Lorem.paragraph }
     price { rand(10..100) }
     image_url { "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" }
   end
