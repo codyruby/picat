@@ -32,19 +32,29 @@ RSpec.describe Item, type: :model do
     end
 
     describe "#title" do
-      it { expect(item).to validate_presence_of(:title) }
+      it { is_expected.to validate_presence_of(:title) }
+      it { is_expected.to validate_length_of(:title).is_at_least(4) }
+      it { is_expected.to validate_length_of(:title).is_at_most(140) }
+      it { is_expected.to allow_value(Faker::Lorem.characters(50)).for(:title) }
+      it { is_expected.not_to allow_value(Faker::Lorem.characters(3)).for(:title) }
     end
 
     describe "#description" do
-      it { expect(item).to validate_presence_of(:description) }
+      it { is_expected.to validate_presence_of(:description) }
+      it { is_expected.to validate_length_of(:description).is_at_least(20) }
+      it { is_expected.to validate_length_of(:description).is_at_most(1000) }
+      it { is_expected.to allow_value(Faker::Lorem.characters(500)).for(:description) }
+      it { is_expected.not_to allow_value(Faker::Lorem.characters(3)).for(:description) }
     end
 
     describe "#price" do
-      it { expect(item).to validate_length_of(:price) }
+      it { is_expected.to validate_presence_of(:price) }
+      it { is_expected.to validate_numericality_of(:price).is_greater_than_or_equal_to(0) }
+      it { is_expected.not_to allow_value(Faker::Number.negative).for(:price) }
     end
 
     describe "#image_url" do
-      it { expect(item).to validate_length_of(:image_url) }
+      it { is_expected.to validate_presence_of(:image_url) }
     end
   end
 end
