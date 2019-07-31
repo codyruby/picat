@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/home', to: 'statics#home'
+
   resources :items, only: [:index, :show]
 
   root 'items#index'
