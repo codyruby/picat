@@ -4,6 +4,19 @@ require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
   describe "GET index" do
+    login_user
+    it "has a current_user" do
+      # note the fact that you should remove the "validate_session" parameter if this was a scaffold-generated controller
+      expect(subject.current_user).not_to eq(nil)
+    end
+
+    it "gets index" do
+      # Note, rails 3.x scaffolding may add lines like get :index, {}, valid_session
+      # the valid_session overrides the devise login. Remove the valid_session from your specs
+      get 'index'
+      response.should be_success
+    end
+
     it "assigns @items" do
       # création d'une instance
       item = FactoryBot.create(:item)
