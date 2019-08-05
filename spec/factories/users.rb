@@ -21,5 +21,8 @@
 
 FactoryBot.define do
   factory :user do
+    sequence(:email) { Faker::Internet.email }
+    password { 'Azerty2019!' }
+    password_confirmation { 'Azerty2019!' }
   end
 end
