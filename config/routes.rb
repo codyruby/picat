@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'carts/:id', to: "carts#show", as: "cart"
 
   resources :items, only: [:index, :show]
+  resources :line_items, only: [:create]
 
   root 'items#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
