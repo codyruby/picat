@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   devise_for :users
   get '/home', to: 'statics#home'
+  get 'carts/:id', to: "carts#show", as: "cart"
 
   resources :items, only: [:index, :show]
 
