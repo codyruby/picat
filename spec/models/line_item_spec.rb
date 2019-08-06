@@ -20,5 +20,10 @@
 require 'rails_helper'
 
 RSpec.describe LineItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "when associations" do
+    describe "line_items" do
+      it { is_expected.to belong_to(:cart) }
+      it { is_expected.to belong_to(:item) }
+    end
+  end
 end
