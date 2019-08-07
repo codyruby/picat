@@ -20,10 +20,15 @@
 #
 
 class User < ApplicationRecord
+  after_create :set_cart
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_many :carts
+
+  def set_cart
+    carts.create(user_id: id)
+  end
 end
