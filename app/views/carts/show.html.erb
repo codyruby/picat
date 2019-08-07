@@ -1,2 +1,30 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+
+<div class="container">
+  <div class="row">
+  <h2 class="h3 mb-3 font-weight-normal text-center">Cart</h2>
+
+<div class="container">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+      </tr>
+  
+    </thead>
+    <tbody>
+    <% @cart.line_items.each do |line_item| %>
+      <tr>
+        <th scope="row"><%= image_tag(line_item.item.image_url, size: "100x100") %></th>
+        <td><%= line_item.item.title %></td>
+        <td>€<%= line_item.item.price %></td>
+        <td>x <%= line_item.quantity %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <p class="h3 mb-3 font-weight-normal text-center"><%= link_to "return home page", root_path, class: "btn btn-primary" %></p>
+</div>
+</div>
