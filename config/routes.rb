@@ -3,10 +3,9 @@
 Rails.application.routes.draw do
   devise_for :users
   get '/home', to: 'statics#home'
-  get 'carts/:id', to: "carts#show", as: "cart"
 
   resources :items, only: [:index, :show]
-  resources :line_items, only: [:create]
+  resources :carts, only: [:show, :update]
 
   root 'items#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
