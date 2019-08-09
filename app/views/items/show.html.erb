@@ -10,7 +10,7 @@
 										<% if user_signed_in? %>
                                         <div class="col-md-4">
 											<span class="product-right-section">
-												<%= button_to "Add to cart", line_items_path(item_id: @item.id), class: "btn btn-default add-item" %>
+												<%= button_to "Add to cart", cart_path, method: :put, class: "btn btn-default add-item" %>
 											</span>
 										</div>
 										<% end %>
