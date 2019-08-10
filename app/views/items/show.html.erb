@@ -7,13 +7,11 @@
 										<div class="col-md-8">
 											<h3 class="pull-left section-heading"><%= @item.title %></h3>
                                         </div>
-										<% if user_signed_in? %>
                                         <div class="col-md-4">
 											<span class="product-right-section">
-												<%= link_to "Add to cart", cart_path, method: :put, class: "btn btn-default add-item" %>
+												<%= button_to "Add to cart", cart_path, method: :put, class: "btn btn-default add-item" %>
 											</span>
 										</div>
-										<% end %>
 									</div>
 								</div>
 								<div class="col-md-8 col-md-push-2 product-description">

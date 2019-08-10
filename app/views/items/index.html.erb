@@ -20,7 +20,7 @@
                                             <div class="portfolio-caption">
                                                 <!-- Liens vers les différentes pages qui dépendent de l'event -->
                                                 <%= link_to "Picture page", item_path(item.id), :class => "btn btn-primary btn-xl text-uppercase js-scroll-trigger"%>
-                                                <%= link_to "Add to cart", cart_path(item.id), method: :put, class: "btn btn-default add-item" %>
+                                                <%= button_to "Add to cart", cart_path(item.id), method: :put, class: "btn btn-default add-item" %>
                                             </div> <br/>                                      
                                     </div> 
                                  <%end%> 
