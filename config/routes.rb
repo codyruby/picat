@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/home', to: 'statics#home'
 
   resources :items, only: [:index, :show]
-  resources :carts, only: [:show, :update]
+  resources :carts, only: [:show, :update, :destroy]
 
   root 'items#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
