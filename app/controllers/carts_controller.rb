@@ -16,6 +16,14 @@ class CartsController < ApplicationController
     redirect_to cart_path(@cart)
   end
 
+  def destroy
+    @cart = Cart.find_by(user_id: current_user)
+    item = Item.find(params[:id])
+    @cart.items.delete(item)
+
+    redirect_to cart_path(@cart)
+  end
+
   private
 
   def correct_user
