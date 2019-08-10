@@ -23,6 +23,12 @@
         <td>x <%= line_item.quantity %></td>
       </tr>
     <% end %>
+     <tr>
+        <th></th>
+        <td><strong>TOTAL PRICE :</strong></td>
+        <td><strong>€<%= @cart.items.sum(:price) %></strong></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
   <p class="h3 mb-3 font-weight-normal text-center"><%= link_to "return home page", root_path, class: "btn btn-primary" %></p>
