@@ -30,6 +30,6 @@ class User < ApplicationRecord
   has_many :items, through: :cart
 
   def set_cart
-    carts.create(user: self)
+    Cart.create(user: self)
   end
 end
