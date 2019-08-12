@@ -26,9 +26,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :carts
+  has_one :cart
+  has_many :items, through: :cart
 
   def set_cart
-    carts.create(user_id: id)
+    carts.create(user: self)
   end
 end
