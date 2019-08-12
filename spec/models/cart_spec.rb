@@ -23,7 +23,7 @@ RSpec.describe Cart, type: :model do
 
   context "when associations" do
     describe "carts" do
-      it { expect(user).to have_many(:carts) }
+      it { expect(user).to have_one(:cart) }
       it { is_expected.to belong_to(:user) }
       it { is_expected.to have_many(:items) }
     end
