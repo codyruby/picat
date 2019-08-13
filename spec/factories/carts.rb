@@ -16,6 +16,5 @@
 
 FactoryBot.define do
   factory :cart do
-    association :line_items, factory: :user
   end
 end
