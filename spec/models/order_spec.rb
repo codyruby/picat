@@ -18,5 +18,14 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) do
+    FactoryBot.create(:user)
+  end
+
+  context "when associations" do
+    describe "orders" do
+      it { is_expected.to belong_to(:user) }
+      it { is_expected.to have_many(:items) }
+    end
+  end
 end
