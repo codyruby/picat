@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
   resources :carts, only: [:show, :update, :destroy]
+  resources :orders
   get '/home', to: 'statics#home'
 
   root 'items#index'
