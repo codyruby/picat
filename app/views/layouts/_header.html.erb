@@ -7,21 +7,18 @@
 					<span class="icon-bar"></span>
 				</button>
 				
-				<a class="navbar-brand" href="<%= items_path %>"> <img src="https://i.pinimg.com/736x/1a/34/5c/1a345cdb8ba185c029a94763cd72ee49.jpg" alt="logo"> </a>
+				<a class="navbar-brand" href="<%= root_path %>"> <img src="https://i.pinimg.com/736x/1a/34/5c/1a345cdb8ba185c029a94763cd72ee49.jpg" alt="logo"> </a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="<%= items_path %>">home</a></li>
-					<li><a href="<%= items_path %>">products</a></li>
+					<li><a href="<%= root_path %>">home</a></li>
+					<li><a href="<%= root_path %>">products</a></li>
 					<% if user_signed_in? %>
 						<li>
 							<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
 						</li>
 						<li>
 							Your email : <%= current_user.email %>
-						</li>
-						<li>
-							<%= link_to "Secret page", static_pages_secret_path %>
 						</li>
 						<li>
 							<%= link_to "Edit email / password", edit_user_registration_path %>

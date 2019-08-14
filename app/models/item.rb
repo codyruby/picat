@@ -22,4 +22,7 @@ class Item < ApplicationRecord
               greater_than_or_equal_to: 0
             }
   validates :image_url, presence: true
+
+  has_many :line_items, dependent: :destroy
+  has_many :carts, through: :line_items
 end

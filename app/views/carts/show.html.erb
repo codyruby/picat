@@ -1,0 +1,38 @@
+
+<div class="container">
+  <div class="row">
+  <h2 class="h3 mb-3 font-weight-normal text-center">Cart</h2>
+
+<div class="container">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col"></th>
+      </tr>
+  
+    </thead>
+    <tbody>
+    <% @cart.line_items.each do |line| %>
+      <tr>
+        <th scope="row"><%= image_tag(line.item.image_url, size: "100x100") %></th>
+        <td><%= line.item.title %></td>
+        <td>€<%= line.item.price %></td>
+        <td>x <%= line.quantity %></td>
+        <td><%= link_to "Delete", cart_path(line.item), :confirm => "Are you sure?", :method => :delete %>
+      </tr>
+    <% end %>
+     <tr>
+        <th></th>
+        <td><strong>TOTAL PRICE :</strong></td>
+        <td><strong>€<%= @cart.items.sum(:price) %></strong></td>
+        <td><%= link_to "Check Out", class: "btn btn-secondary" %></td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="h3 mb-3 font-weight-normal text-center"><%= link_to "return home page", root_path, class: "btn btn-primary" %></p>
+</div>
+</div>

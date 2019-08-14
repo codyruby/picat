@@ -57,4 +57,10 @@ RSpec.describe Item, type: :model do
       it { is_expected.to validate_presence_of(:image_url) }
     end
   end
+
+  context "when associations" do
+    describe "items" do
+      it { is_expected.to have_many(:carts) }
+    end
+  end
 end

@@ -10,7 +10,7 @@
                             <div class="row">
                                 <% @items.each do |item|%>
                                     <div class="card col-md-4 mb-3">
-                                        <%= link_to image_tag(item.image_url, size: "320x180"), item_path(item.id) %>
+                                        <%= link_to image_tag(item.image_url, size: "320x180"), item_path(item) %>
                                             <div class="card-body">
                                                 <span class="product-list-right">
                                                     <span class="product-list-name h4 black-color"><%= item.title %></span><br/>
@@ -19,7 +19,8 @@
                                             </div>
                                             <div class="portfolio-caption">
                                                 <!-- Liens vers les différentes pages qui dépendent de l'event -->
-                                                <%= link_to "Picture page", item_path(item.id), :class => "btn btn-primary btn-xl text-uppercase js-scroll-trigger"%>
+                                                <%= link_to "Picture page", item_path(item), :class => "btn btn-primary btn-xl text-uppercase js-scroll-trigger"%>
+                                                <%= button_to "Add to cart", cart_path(item), method: :put, class: "btn btn-default add-item" %>
                                             </div> <br/>                                      
                                     </div> 
                                  <%end%> 

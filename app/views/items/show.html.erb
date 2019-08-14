@@ -9,9 +9,7 @@
                                         </div>
                                         <div class="col-md-4">
 											<span class="product-right-section">
-												<span><%= @item.price %> €</span><br/>
-												<button class="btn btn-default add-item" type="button" data-image="img/product.png" data-name="Textile classic grey chair" data-cost="299.00" data-id="8">
-												<span class="ti-shopping-cart"></span>add to cart </button>
+												<%= button_to "Add to cart", cart_path(@item), method: :put, class: "btn btn-default add-item" %>
 											</span>
 										</div>
 									</div>
