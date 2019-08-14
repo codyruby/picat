@@ -28,6 +28,7 @@ class User < ApplicationRecord
 
   has_one :cart, dependent: :destroy
   has_many :items, through: :cart
+  has_many :orders, dependent: :destroy
 
   def set_cart
     Cart.create(user: self)
