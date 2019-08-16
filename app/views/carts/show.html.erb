@@ -28,8 +28,8 @@
      <tr>
         <th></th>
         <td><strong>TOTAL PRICE :</strong></td>
-        <td><strong>€<%= @cart.items.sum(:price) %></strong></td>
-        <td><%= link_to "Check Out", class: "btn btn-secondary" %></td>
+        <td><strong>€<%= @cart.total_price %></strong></td>
+        <td><%= link_to "Check Out", orders_path, method: :post, class: "btn btn-secondary" %></td>
       </tr>
     </tbody>
   </table>
