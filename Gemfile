@@ -40,6 +40,7 @@ gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
+gem 'stripe'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
