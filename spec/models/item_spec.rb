@@ -61,6 +61,7 @@ RSpec.describe Item, type: :model do
   context "when associations" do
     describe "items" do
       it { is_expected.to have_many(:carts) }
+      it { is_expected.to have_many(:orders) }
     end
   end
 end
