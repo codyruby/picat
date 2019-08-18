@@ -6,7 +6,20 @@ class OrdersController < ApplicationController
   def show; end
 
   def create
-    @amount = current_user.cart.total_price
+    @amount = current_user.cart.total_price.to_i * 100
+
+    customer = Stripe::Customer.create(
+      email: params[:stripeEmail],
+      source: params[:stripeToken],
+    )
+
+    Stripe::Charge.create(
+      customer: customer.id,
+      amount: @amount,
+      description: "Odrer N°: #{current_user.email} #{Order.last.id}",
+      currency: 'eur',
+    )
+
     @order = Order.create(user_id: current_user.id, amount: @amount)
 
     current_user.cart.line_items.each do |line_item|
@@ -15,10 +28,14 @@ class OrdersController < ApplicationController
 
     if @order.save
       empty_cart
+      flash[:notice] = "Your order was successfully taken"
       redirect_to root_path
     else
       redirect_to cart_path(current_user.cart)
     end
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to cart_path(current_user.cart)
   end
 
   private
