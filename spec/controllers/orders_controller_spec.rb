@@ -1,62 +1,64 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+# # frozen_string_literal: true
 
-RSpec.describe OrdersController, type: :controller do
-  let!(:user) { create(:user) }
-  let!(:order) { user.orders }
-  let!(:item) { create(:item) }
-  let!(:cart) { user.cart }
+# require 'rails_helper'
 
-  describe "GET #index" do
-    it "gets index" do
-      get :index
-      sign_in user
-      response.should be_success
-    end
-  end
+# RSpec.describe OrdersController, type: :controller do
+#   let!(:user) { create(:user) }
+#   let!(:order) { user.orders }
+#   let!(:item) { create(:item) }
+#   let!(:cart) { user.cart }
 
-  describe "GET show" do
-    subject { get :show, params: { id: order.ids } }
+#   describe "GET #index" do
+#     it "gets index" do
+#       get :index
+#       sign_in user
+#       response.should be_success
+#     end
+#   end
 
-    it "renders the show template" do
-      expect(subject).to render_template("show")
-    end
-  end
+#   describe "GET show" do
+#     subject { get :show, params: { id: order.ids } }
 
-  describe "POST create" do
-    context "with valid attributes" do
-      it "creates a new order" do
-        sign_in user
-        post :create, params: { user_id: user, amount: 9.99 }
+#     it "renders the show template" do
+#       expect(subject).to render_template("show")
+#     end
+#   end
 
-        expect(Order.count).to eq(1)
-      end
+#   describe "POST create" do
+#     context "with valid attributes" do
+#       it "creates a new order" do
+#         sign_in user
+#         post :create, params: { user_id: user, amount: 9.99 }
 
-      it "redirects to after new order" do
-        sign_in user
-        post :create, params: { user_id: user, amount: 9.99 }
+#         expect(Order.count).to eq(1)
+#       end
 
-        response.should redirect_to root_path
-      end
-    end
+#       it "redirects to after new order" do
+#         sign_in user
+#         post :create, params: { user_id: user, amount: 9.99 }
 
-    # context "with invalid attributes" do
-    #   it "doest not create a new order" do
-    #     sign_in user
-    #     cart = Cart.create(user_id: user)
-    #     expect {
-    #       post :create, params: { }
+#         response.should redirect_to root_path
+#       end
+#     end
 
-    #     }.to_not change(Order, :count)
-    #   end
+#     # context "with invalid attributes" do
+#     #   it "doest not create a new order" do
+#     #     sign_in user
+#     #     cart = Cart.create(user_id: user)
+#     #     expect {
+#     #       post :create, params: { }
 
-    #   it "redirect_to cart_path after not created" do
-    #     sign_in user
-    #     cart = Cart.create(user_id: user)
-    #     post :create, params: { user_id: "invalid" }
-    #     expect(cart_path(user.cart)).to redirect_to cart_path(user.cart)
-    #   end
-    #  end
-  end
-end
+#     #     }.to_not change(Order, :count)
+#     #   end
+
+#     #   it "redirect_to cart_path after not created" do
+#     #     sign_in user
+#     #     cart = Cart.create(user_id: user)
+#     #     post :create, params: { user_id: "invalid" }
+#     #     expect(cart_path(user.cart)).to redirect_to cart_path(user.cart)
+#     #   end
+#     #  end
+#   end
+# end
