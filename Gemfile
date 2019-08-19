@@ -55,6 +55,7 @@ group :development do
   gem 'guard'
   gem 'guard-rspec', '~> 4.7', '>= 4.7.3', require: false
   gem 'guard-rubocop', '~> 1.3'
+  gem "letter_opener"
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
