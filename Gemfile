@@ -73,6 +73,7 @@ group :test do
   gem 'rspec_junit_formatter', '~> 0.2.3'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'stripe-ruby-mock', '~> 2.2', '>= 2.2.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
