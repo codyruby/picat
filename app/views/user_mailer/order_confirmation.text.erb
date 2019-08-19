@@ -1,8 +1,17 @@
-Salut et bienvenue chez nous !
+Hi <%= @order.user.email %> !
 ==========================================================
  
-Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : <%= @user.email %>.
- 
-Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
- 
-À très vite sur monsite.fr !
+We confirm your purchase of <%= @order.user.cart.total_price %> € on PICAT.
+
+Details of your order :
+
+<% @line_items.each do |line| %>
+    <tr>
+        <th scope="row"><%= image_tag(line.item.image_url, size: "100x100") %></th>
+        <td><%= line.item.title %></td>
+        <td>€<%= line.item.price %></td>
+        <td>x <%= line.quantity %></td>
+    </tr>
+<% end %>
+
+Thank you and see you soon on Picat !

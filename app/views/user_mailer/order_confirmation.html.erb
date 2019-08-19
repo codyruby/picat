@@ -4,13 +4,23 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Salut et bienvenue chez nous !</h1>
+    <h1>Hi <%= @order.user.email %> !</h1>
     <p>
-      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : <%= @user.email %>.
+      We confirm your purchase of <%= @order.user.cart.total_price %> € on PICAT.
     </p>
     <p>
-      Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
+      Details of your order :
     </p>
-    <p> À très vite sur monsite.fr !
+      <% @line_items.each do |line| %>
+          <tr>
+              <th scope="row"><%= image_tag(line.item.image_url, size: "100x100") %></th>
+              <td><%= line.item.title %></td>
+              <td>€<%= line.item.price %></td>
+              <td>x <%= line.quantity %></td>
+          </tr>
+      <% end %>
+    <p> 
+      Thank you and see you soon on Picat !
+    </p>
   </body>
 </html>
