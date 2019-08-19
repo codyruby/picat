@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
 
   def order_confirmation(order)
     @order = order
-    @items = @order.items
+    @line_items = @order.user.cart.line_items
     @url = 'http://monsite.fr/login'
 
     mail(to: @order.user.email, subject: 'Picat order confirmation !')
