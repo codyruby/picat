@@ -19,4 +19,10 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items, dependent: :destroy
   has_many :items, through: :order_items
+
+  after_create :user_order_send
+
+  def user_order_send
+    UserMailer.order_confirmation(self).deliver_now
+  end
 end
