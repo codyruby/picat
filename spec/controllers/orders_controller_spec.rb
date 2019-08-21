@@ -11,16 +11,31 @@ RSpec.describe OrdersController, type: :controller do
 
   describe "GET #index" do
     it "gets index" do
-      get :index
       sign_in user
+      get :index
+
       response.should be_success
     end
   end
 
-  describe "GET show" do
+  describe "GET #index as a visitor not logged in " do
+    it "get a 401 redirection if visitor is not logged in" do
+      get :index
+      expect(response).to have_http_status(:found)
+    end
+
+    it "redirect user to devise sign in" do
+      get :index
+      expect(response).to redirect_to("http://test.host/users/sign_in")
+    end
+  end
+
+  describe "GET #show" do
     subject { get :show, params: { id: order.ids } }
 
     it "renders the show template" do
+      sign_in user
+
       expect(subject).to render_template("show")
     end
   end
