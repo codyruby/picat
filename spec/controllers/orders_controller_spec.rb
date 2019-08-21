@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'stripe_mock'
 
 RSpec.describe OrdersController, type: :controller do
   let!(:user) { create(:user) }
@@ -24,39 +25,59 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  describe "POST create" do
-    context "with valid attributes" do
-      it "creates a new order" do
-        sign_in user
-        post :create, params: { user_id: user, amount: 9.99 }
+  # describe "POST create" do
+  #   #   it "redirects to after new order" do
+  #   #     sign_in user
+  #   #     post :create, params: { user_id: user, amount: 9.99 }
 
-        expect(Order.count).to eq(1)
-      end
+  #   #     response.should redirect_to root_path
+  #   #   end
+  #   let(:stripe_helper) { StripeMock.create_test_helper }
 
-      it "redirects to after new order" do
-        sign_in user
-        post :create, params: { user_id: user, amount: 9.99 }
+  #   before { StripeMock.start }
 
-        response.should redirect_to root_path
-      end
-    end
+  #   after { StripeMock.stop }
 
-    # context "with invalid attributes" do
-    #   it "doest not create a new order" do
-    #     sign_in user
-    #     cart = Cart.create(user_id: user)
-    #     expect {
-    #       post :create, params: { }
+  #   it "creates a stripe customer" do
+  #     # This doesn't touch stripe's servers nor the internet!
+  #     # Specify :source in place of :card (with same value) to return customer with source data
+  #     customer = Stripe::Customer.create(
+  #       email: 'johnny@appleseed.com',
+  #       card: stripe_helper.generate_card_token
+  #     )
+  #     expect(customer.email).to eq('johnny@appleseed.com')
+  #   end
+  # end
 
-    #     }.to_not change(Order, :count)
-    #   end
+  # it "creates a new order" do
+  #   customer = Stripe::Customer.create({
+  #     email: 'johnny@appleseed.com',
+  #     card: stripe_helper.generate_card_token
+  #   })
 
-    #   it "redirect_to cart_path after not created" do
-    #     sign_in user
-    #     cart = Cart.create(user_id: user)
-    #     post :create, params: { user_id: "invalid" }
-    #     expect(cart_path(user.cart)).to redirect_to cart_path(user.cart)
-    #   end
-    #  end
-  end
+  #   sign_in user
+  #   @amount = 99.0
+  #   post :create, params: { user_id: user, amount: 99.0 }
+
+  #   expect(Order.count).to eq(1)
+
+  # end
+
+  # context "with invalid attributes" do
+  #   it "doest not create a new order" do
+  #     sign_in user
+  #     cart = Cart.create(user_id: user)
+  #     expect {
+  #       post :create, params: { }
+
+  #     }.to_not change(Order, :count)
+  #   end
+
+  #   it "redirect_to cart_path after not created" do
+  #     sign_in user
+  #     cart = Cart.create(user_id: user)
+  #     post :create, params: { user_id: "invalid" }
+  #     expect(cart_path(user.cart)).to redirect_to cart_path(user.cart)
+  #   end
+  #  end
 end
