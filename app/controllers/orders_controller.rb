@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:show]
+
   def index; end
 
   def show; end
@@ -42,5 +45,10 @@ class OrdersController < ApplicationController
 
   def empty_cart
     current_user.cart.line_items.each(&:destroy)
+  end
+
+  def correct_user
+    order = Order.find(params[:id])
+    redirect_to root_path unless current_user == order.user
   end
 end
