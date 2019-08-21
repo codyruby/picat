@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  def index; end
+  before_action :authenticate_user!
+
+  def index
+    @orders = current_user.orders
+  end
 
   def show; end
 
