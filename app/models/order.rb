@@ -21,8 +21,13 @@ class Order < ApplicationRecord
   has_many :items, through: :order_items
 
   after_create :send_order_to_user
+  after_create :send_order_to_admin
 
   def send_order_to_user
     UserMailer.order_confirmation(self).deliver_now
+  end
+
+  def send_order_to_admin
+    UserMailer.order_confirmation_to_admin(self).deliver_now
   end
 end
