@@ -1,37 +1,33 @@
-
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
-				</button>
-				
-				<a class="navbar-brand" href="<%= root_path %>"> <img src="https://i.pinimg.com/736x/1a/34/5c/1a345cdb8ba185c029a94763cd72ee49.jpg" alt="logo"></a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li><a href="<%= root_path %>">home</a></li>
-					<li><a href="<%= root_path %>">products</a></li>
-					<% if user_signed_in? %>
-						<li>
-							<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-						</li>
-						<li>
-							Your email : <%= current_user.email %>
-						</li>
-						<li>
-							<%= link_to "Edit email / password", edit_user_registration_path %>
-						</li>
-					<% else %>
-						<li>    
-							<%= link_to "Sign in", new_user_session_path %>
-						</li>
-						<li>
-						<%= link_to "Sign up", new_user_registration_path %>
-						</li>
-					<% end %>
-				</ul>
-			</div>
-		</div>
+<div class="container-fluid">
+	<div class="navbar-header">
+		<button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+			<span class="icon-bar"></span> 
+			<span class="icon-bar"></span> 
+			<span class="icon-bar"></span>
+		</button>
+		
+		<a class="navbar-brand" href="<%= root_path %>"> <img src="https://i.pinimg.com/736x/1a/34/5c/1a345cdb8ba185c029a94763cd72ee49.jpg" alt="logo"></a>
+	</div>
+	<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="nav navbar-nav">
+			<li><a href="<%= root_path %>">home</a></li>
+			<li><a href="<%= root_path %>">products</a></li>
+			<% if user_signed_in? %>
+				<li>
+					<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+				</li>
+				<li>
+					<%= link_to "My profil", profil_path %>
+				</li>
+			<% else %>
+				<li>    
+					<%= link_to "Sign in", new_user_session_path %>
+				</li>
+				<li>
+				<%= link_to "Sign up", new_user_registration_path %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
 	
