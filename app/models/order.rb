@@ -20,9 +20,9 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :items, through: :order_items
 
-  after_create :user_order_send
+  after_create :send_order_to_user
 
-  def user_order_send
+  def send_order_to_user
     UserMailer.order_confirmation(self).deliver_now
   end
 end
