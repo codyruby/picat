@@ -1,0 +1,17 @@
+Hi <%= @order.user.email %> !
+==========================================================
+ 
+We confirm your purchase of <%= @order.user.cart.total_price %> € on PICAT.
+
+Details of your order :
+
+<% @line_items.each do |line| %>
+    <tr>
+        <th scope="row"><%= image_tag(line.item.image_url, size: "100x100") %></th>
+        <td><%= line.item.title %></td>
+        <td>€<%= line.item.price %></td>
+        <td>x <%= line.quantity %></td>
+    </tr>
+<% end %>
+
+Thank you and see you soon on Picat !
