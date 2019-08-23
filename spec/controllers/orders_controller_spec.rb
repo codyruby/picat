@@ -11,8 +11,9 @@ RSpec.describe OrdersController, type: :controller do
 
   describe "GET #index" do
     it "gets index" do
-      get :index
       sign_in user
+      get :index
+
       response.should be_success
     end
   end
@@ -21,6 +22,8 @@ RSpec.describe OrdersController, type: :controller do
     subject { get :show, params: { id: order.ids } }
 
     it "renders the show template" do
+      sign_in user
+
       expect(subject).to render_template("show")
     end
   end
