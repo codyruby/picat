@@ -3,7 +3,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show] do
+    resources :pictures, only: [:create]
+  end
+
   resources :carts, only: [:show, :update, :destroy]
   resources :orders
   get '/home', to: 'statics#home'
