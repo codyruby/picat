@@ -10,7 +10,11 @@
                             <div class="row">
                                 <% @items.each do |item|%>
                                     <div class="card col-md-4 mb-3">
-                                        <%= link_to image_tag(item.image_url, size: "320x180"), item_path(item) %>
+                                        <%if item.image_url.nil?%>
+                                            <%= link_to image_tag(item.picture.variant(resize: "320x180"), alt: 'picture'), item_path(item) %>
+                                        <%else%>
+                                            <%= link_to image_tag(item.image_url, size: "320x180"), item_path(item) %>
+                                        <%end%>
                                             <div class="card-body">
                                                 <span class="product-list-right">
                                                     <span class="product-list-name h4 black-color"><%= item.title %></span><br/>

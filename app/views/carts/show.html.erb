@@ -18,7 +18,13 @@
     <tbody>
     <% @cart.line_items.each do |line| %>
       <tr>
-        <th scope="row"><%= image_tag(line.item.image_url, size: "100x100") %></th>
+        <th scope="row">
+        <%if line.item.image_url.nil?%>
+            <%= image_tag(line.item.picture.variant(resize: "100x100"), alt: 'picture') %>
+        <%else%>
+            <%= image_tag(line.item.image_url, size: "100x100") %>
+        <%end%>
+        </th>
         <td><%= line.item.title %></td>
         <td>€<%= line.item.price %></td>
         <td>x <%= line.quantity %></td>
