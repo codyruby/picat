@@ -18,3 +18,15 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
+
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+  it { is_expected.to have_many(:items) }
+  it { is_expected.to have_many(:orders) }
+  it { is_expected.to have_one(:cart) }
+
+  it "creates a cart after creation" do
+    expect{ FactoryBot.create(:user) }.to change(Cart, :count).by(1)
+  end
+end
