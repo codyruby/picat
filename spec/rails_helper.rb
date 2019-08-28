@@ -72,13 +72,13 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
 
-  config.before do
-    @stripe_test_helper = StripeMock.create_test_helper
-    StripeMock.start
-  end
-  config.after do
-    StripeMock.stop
-  end
+  # config.before do
+  #   @stripe_test_helper = StripeMock.create_test_helper
+  #   StripeMock.start
+  # end
+  # config.after do
+  #   StripeMock.stop
+  # end
 end
 
 Shoulda::Matchers.configure do |config|
