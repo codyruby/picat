@@ -14,9 +14,15 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
 
-    redirect_to item_path(@item)
+    if @item.save
+      flash[:notice] = 'New item created!'
+      redirect_to item_path(@item)
+    else
+      flash[:alert] = @item.errors.full_messages
+      render :new
+    end
   end
 
   def edit
