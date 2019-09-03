@@ -28,7 +28,13 @@
                         <tbody>
                         <% order.order_items.each do |order| %>
                         <tr>
-                            <th scope="row"><%= image_tag(order.item.image_url, size: "100x100") %></th>
+                            <th scope="row">
+                                <%if order.item.image_url.nil?%>
+                                    <%= link_to image_tag(order.item.picture.variant(resize: "100x100"), alt: 'picture'), item_path(order.item) %>
+                                <%else%>
+                                    <%= link_to image_tag(order.item.image_url, size: "100x100"), item_path(order.item) %>
+                                <%end%>
+                            </th>
                             <td><%= order.item.title %></td>
                             <td>€<%= order.item.price %></td>
                             <td>x <%= order.quantity %></td>
