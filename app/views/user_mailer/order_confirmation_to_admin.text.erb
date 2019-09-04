@@ -8,10 +8,10 @@ Details of order :
 <% @line_items.each do |line| %>
     <tr>
         <th scope="row">
-        <%if line.item.image_url.nil?%>
+        <%if line.item.picture.attached?%>
             <%= image_tag(line.item.picture.variant(resize: "100x100"), alt: 'picture') %>
         <%else%>
-            <%= image_tag(line.item.image_url, size: "100x100") %>
+            <%= image_tag('default_cat.jpg', size: "100x100") %>
         <%end%>
         </th>
         <td><%= line.item.title %></td>

@@ -29,10 +29,10 @@
                         <% order.order_items.each do |order| %>
                         <tr>
                             <th scope="row">
-                                <%if order.item.image_url.nil?%>
-                                    <%= link_to image_tag(order.item.picture.variant(resize: "100x100"), alt: 'picture'), item_path(order.item) %>
+                                <%if order.item.picture.attached?%>
+                                    <%= image_tag(order.item.picture.variant(resize: "320x180"), alt: 'picture') %>
                                 <%else%>
-                                    <%= link_to image_tag(order.item.image_url, size: "100x100"), item_path(order.item) %>
+                                    <%= image_tag('default_cat.jpg', size: "220x180") %>
                                 <%end%>
                             </th>
                             <td><%= order.item.title %></td>
