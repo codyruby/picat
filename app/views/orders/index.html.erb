@@ -30,9 +30,9 @@
                         <tr>
                             <th scope="row">
                                 <%if order.item.picture.attached?%>
-                                    <%= image_tag(order.item.picture.variant(resize: "320x180"), alt: 'picture') %>
+                                    <%= image_tag(order.item.picture.variant(resize: "100x100"), alt: 'picture') %>
                                 <%else%>
-                                    <%= image_tag('default_cat.jpg', size: "220x180") %>
+                                    <%= image_tag('default_cat.jpg', size: "100x100") %>
                                 <%end%>
                             </th>
                             <td><%= order.item.title %></td>
