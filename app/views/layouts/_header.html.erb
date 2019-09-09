@@ -17,7 +17,7 @@
 					<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
 				</li>
 				<li>
-					<%= link_to "My profil", profil_path %>
+					<%= link_to "My profile", profile_path %>
 				</li>
 			<% else %>
 				<li>    
@@ -27,6 +27,9 @@
 				<%= link_to "Sign up", new_user_registration_path %>
 				</li>
 			<% end %>
+			<li class="nav-item active">
+                <%= link_to 'New Item', new_item_path, class: "nav-link" %>
+            </li>
 		</ul>
 	</div>
 </div>

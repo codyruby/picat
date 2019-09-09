@@ -53,9 +53,9 @@ RSpec.describe Item, type: :model do
       it { is_expected.not_to allow_value(Faker::Number.negative).for(:price) }
     end
 
-    describe "#image_url" do
-      it { is_expected.to validate_presence_of(:image_url) }
-    end
+    # describe "#image_url" do
+    #   it { is_expected.to validate_presence_of(:image_url) }
+    # end
   end
 
   context "when associations" do

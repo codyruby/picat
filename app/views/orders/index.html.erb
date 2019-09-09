@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2 class="h3 mb-3 font-weight-normal text-center">My profil</h2>
+    <h2 class="h3 mb-3 font-weight-normal text-center">My profile</h2>
             <ul class="nav navbar-nav">
                 <li>
                     Your Id : <%= current_user.email %>
@@ -28,7 +28,13 @@
                         <tbody>
                         <% order.order_items.each do |order| %>
                         <tr>
-                            <th scope="row"><%= image_tag(order.item.image_url, size: "100x100") %></th>
+                            <th scope="row">
+                                <%if order.item.picture.attached?%>
+                                    <%= image_tag(order.item.picture.variant(resize: "100x100"), alt: 'picture') %>
+                                <%else%>
+                                    <%= image_tag('default_cat.jpg', size: "100x100") %>
+                                <%end%>
+                            </th>
                             <td><%= order.item.title %></td>
                             <td>€<%= order.item.price %></td>
                             <td>x <%= order.quantity %></td>

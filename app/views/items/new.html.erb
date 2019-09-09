@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+    <br><br><br>
+        <%= form_for @item, url: items_path, method: :post do |f| %>
+            <h1 class="h3 mb-3 font-weight-normal text-center">New Item:</h1>
+            <div class="field">
+            <%= f.label :title, "Title:"  %><br />
+            <%= f.text_field :title, class: "form-control" %>
+            </div>
+            <div class="field">
+            <%= f.label :description, "Description:" %><br />
+            <%= f.text_area :description, class: "form-control" %>
+            </div>
+            <div class="field">
+            <%= f.label :price, "Prix:" %><br />
+            <%= f.text_field :price, class: "form-control" %>
+            </div>
+            <div class="field">
+            <%= f.label :picture, "Localité:" %><br />
+            <%= f.file_field :picture %>
+            </div>   
+            <br><br><br>
+            <div class="actions mt-5">
+            <%= f.submit "Create Item", class: "btn btn-lg btn-primary btn-block" %>
+            </div>  
+        <% end %>              
+    </div>
+  </div>
+</div>
