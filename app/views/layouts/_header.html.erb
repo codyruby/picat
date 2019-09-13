@@ -30,6 +30,14 @@
 			<li class="nav-item active">
                 <%= link_to 'New Item', new_item_path, class: "nav-link" %>
             </li>
+			<% if current_user %>
+				<li class="nav-item active">
+					<%= link_to cart_path(current_user.cart) do %> 
+					<%= image_tag('cart_image.png', size: "20x20") %>
+					<%= current_user.cart.line_items.sum(&:quantity) %>
+					<% end %>           
+				</li>
+			<% end %>
 		</ul>
 	</div>
 </div>

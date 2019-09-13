@@ -7,7 +7,12 @@ Rails.application.routes.draw do
     resources :pictures, only: [:create]
   end
 
-  resources :carts, only: [:show, :update, :destroy]
+  resources :carts, only: [:show, :update, :destroy, :remove_item] do
+    member do
+      delete 'remove_item'
+    end
+  end
+
   resources :orders
   get '/home', to: 'statics#home'
   get '/profile', to: 'orders#index'
