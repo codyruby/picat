@@ -1,62 +1,79 @@
-
 <div class="container">
   <div class="row">
-  <h2 class="h3 mb-3 font-weight-normal text-center">Cart</h2>
-
-<div class="container">
-  <table class="table table-bordered">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Title</th>
-        <th scope="col">Price</th>
-        <th scope="col">Quantity</th>
-        <th scope="col"></th>
-      </tr>
-  
-    </thead>
-    <tbody>
-    <% @cart.line_items.each do |line| %>
-      <tr>
-        <th scope="row">
-        <%if line.item.picture.attached?%>
-            <%= image_tag(line.item.picture.variant(resize: "100x100"), alt: 'picture') %>
-        <%else%>
-            <%= image_tag('default_cat.jpg', size: "100x100") %>
-        <%end%>
-        </th>
-        <td><%= line.item.title %></td>
-        <td>€<%= line.item.price %></td>
-        <td>x <%= line.quantity %></td>
-        <td><%= link_to "Delete", cart_path(line.item), :confirm => "Are you sure?", :method => :delete %>
-      </tr>
-    <% end %>
-     <tr>
-        <th></th>
-        <td><strong></strong></td>
-        <td><%= form_tag orders_path do %>
-              <article>
-                <% if flash[:error].present? %>
-                  <div id="error_explanation">
-                    <p><%= flash[:error] %></p>
-                  </div>
+    <% if @cart.line_items.count > 0 %>
+      <h2 class="h3 mb-3 font-weight-normal text-center">Cart</h2>
+        <div class="container">
+          <table class="table table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <% @cart.line_items.each do |line| %>
+                  <tr>
+                    <th scope="row">
+                      <%if line.item.picture.attached?%>
+                          <%= image_tag(line.item.picture.variant(resize: "100x100"), alt: 'picture') %>
+                      <%else%>
+                          <%= image_tag('default_cat.jpg', size: "100x100") %>
+                      <%end%>
+                      </th>
+                      <td><%= line.item.title %></td>
+                      <td>€<%= line.item.price %></td>
+                      <td> 
+                          <!--Table-->
+                          <table>
+                              <!--Table body-->
+                              <tbody>
+                                  <tr>
+                                      <td><%= button_to " - ", cart_path(line.item), method: :delete, class: "btn btn-default add-item" %></td>
+                                      <td><%= line.item.line_items.where(cart_id: current_user.cart).first.quantity %></td>
+                                      <td><%= button_to "+", cart_path(line.item), method: :put, class: "btn btn-default add-item" %></td>
+                                  </tr>
+                              </tbody>
+                              <!--Table body-->
+                          </table>
+                          <!--Table-->
+                      </td>
+                      <td><%= button_to "Remove", remove_item_cart_path(line.item),method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default add-item" %>
+                  </tr>
                 <% end %>
-                <label class="amount">
-                  <span>TOTAL PRICE : €<%= @cart.total_price %></span>
-                </label>
-              </article>
-
-              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                      data-description="Payment order"
-                      data-amount="<%= @cart.total_price * 100 %>"
-                      data-currency="eur"
-                      data-locale="auto"></script>
-            <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <p class="h3 mb-3 font-weight-normal text-center"><%= link_to "return home page", root_path, class: "btn btn-primary" %></p>
-</div>
+                <tr>
+                  <th></th>
+                  <td></td>
+                  <td><%= form_tag orders_path do %>
+                    <article>
+                      <% if flash[:error].present? %>
+                        <div id="error_explanation">
+                          <p><%= flash[:error] %></p>
+                        </div>
+                      <% end %>
+                        <label class="amount">
+                          <span>TOTAL PRICE : €<%= @cart.total_price %></span>
+                        </label>
+                    </article>
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                            data-description="Payment order"
+                            data-amount="<%= @cart.total_price * 100 %>"
+                            data-currency="eur"
+                            data-locale="auto">
+                    </script>
+                    <% end %>
+                    </td>
+                  </tr>
+            </tbody>
+          </table>
+        </div>
+    <% else %>
+      <p class="h3 mb-3 text-center">Your cart is empty.</p>
+      <p class="text-center">Your cart is currently empty. Return to our shop and check out the latest offers. We have some great items that are waiting for you.</p>
+    <% end %>
+    <p class="h3 mb-3 font-weight-normal text-center"><%= link_to "Go shopping", root_path, class: "btn btn-primary" %></p>
+  </div>
 </div>
