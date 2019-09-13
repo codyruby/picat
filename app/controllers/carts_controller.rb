@@ -22,6 +22,15 @@ class CartsController < ApplicationController
     sub_quantity(@item)
   end
 
+  def remove_item
+    @cart = Cart.find_by(user: current_user)
+    @item = Item.find(params[:id])
+
+    flash[:notice] = "#{@item.title} has been removed." if @cart.items.delete(@item)
+
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def correct_user
@@ -38,7 +47,7 @@ class CartsController < ApplicationController
       @cart.items << @item
     end
 
-    redirect_to cart_path(@cart)
+    redirect_back(fallback_location: root_path)
   end
 
   def sub_quantity(item)
@@ -50,6 +59,6 @@ class CartsController < ApplicationController
       @cart.items.delete(item)
     end
 
-    redirect_to cart_path(@cart)
+    redirect_back(fallback_location: root_path)
   end
 end
